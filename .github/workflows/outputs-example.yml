@@ -1,8 +1,8 @@
 name: Pull Request on Branch Push
 on:
   push:
-    branches-ignore:
-    - devel
+    branches:
+      - output_value_test
 jobs:
   auto-pull-request:
     name: PullRequestAction
@@ -14,8 +14,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH_PREFIX: update/
-        PULL_REQUEST_BRANCH: master
-        PULL_REQUEST_REVIEWERS: vsoch
+        PULL_REQUEST_BRANCH: test
     - name: Test outputs
       env:
         pull_request_number_output: ${{ steps.pull_request.outputs.pull_request_number }}
