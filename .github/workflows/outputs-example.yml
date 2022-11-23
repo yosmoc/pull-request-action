@@ -1,0 +1,26 @@
+name: Pull Request on Branch Push
+on:
+  push:
+
+jobs:
+  auto-pull-request:
+    name: PullRequestAction
+    runs-on: ubuntu-latest
+    steps:
+    - name: pull-request-action
+      id: pull_request
+      uses: yosmoc/pull-request-action@9229676b67830bdf2a7bcbf8b15f9a9bf92cde61
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH_PREFIX: update/
+        PULL_REQUEST_BRANCH: master
+    - name: Test outputs
+      env:
+        pull_request_number_output: ${{ steps.pull_request.outputs.pull_request_number }}
+        pull_request_url_output: ${{ steps.pull_request.outputs.pull_request_url }}
+      run: |
+        echo "Pull request number from output: ${pull_request_number_output}"
+        echo "Pull request url from output: ${pull_request_url_output}"
+        echo "Pull request number from environment: ${PULL_REQUEST_NUMBER}"
+        echo "Pull request url from environment: ${PULL_REQUEST_URL}"
+        echo "Another way to specify from output ${{ steps.pull_request.outputs.pull_request_number }}"
