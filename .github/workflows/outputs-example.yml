@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: pull-request-action
       id: pull_request
-      uses: vsoch/pull-request-action@1.0.22 # 1.0.21
+      uses: yosmoc/pull-request-action@99ed953d0b2069956f80560c87a7ea0535070b7b
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH_PREFIX: update/
